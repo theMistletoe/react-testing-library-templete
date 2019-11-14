@@ -11,3 +11,6 @@ npm test
 # run app
 npm start
 ```
+
+# Referenced
+https://qiita.com/taneba/items/b21f5fee17eb593b30c8
