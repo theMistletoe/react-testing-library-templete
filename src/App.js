@@ -1,4 +1,6 @@
 import React from "react";
+import ReactDOM from "react-dom";
+import Main from "./Main";
 
 export default class App extends React.Component {
 
@@ -8,7 +10,8 @@ export default class App extends React.Component {
     }
 
     handleLogin() {
-        console.log('it was called')
+        const rootElement = document.getElementById("root");
+        ReactDOM.render(<Main />, rootElement);
     }
 //   state = { greeting: 'Hello' };
   render() {

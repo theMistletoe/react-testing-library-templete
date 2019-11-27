@@ -1,8 +1,10 @@
 import React from "react";
 import { render, cleanup, fireEvent } from "react-testing-library";
 import "jest-dom/extend-expect";
+import ReactDOM from "react-dom";
 
 import App from "../App";
+import Main from "../Main";
 
 afterEach(cleanup);
 
@@ -57,12 +59,12 @@ describe("App", () => {
     });
 
     describe("execute",  () => {
-        
-        it("execute login library when click login button", () => {
+
+        it("render Main component", () => {
             const { getByText } = render(<App />);
-            const spy = jest.spyOn(console, 'log')
+            const spy = jest.spyOn(ReactDOM, 'render').mockImplementation();
             fireEvent.click(getByText("Login"))
-            expect(spy).toHaveBeenCalledWith('it was called');
+            expect(spy).toHaveBeenCalledWith(<Main />, document.getElementById("root"));
         });
     });
 });
