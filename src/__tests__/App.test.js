@@ -1,29 +1,33 @@
 import React from "react";
-import { render, cleanup, fireEvent } from "react-testing-library";
+import { render, cleanup, fireEvent, waitForElement } from "react-testing-library";
 import "jest-dom/extend-expect";
 import ReactDOM from "react-dom";
+import axios from 'axios';
 
 import App from "../App";
 import Main from "../Main";
 
 afterEach(cleanup);
 
+jest.mock('axios');
+
+// https://github.com/jsdom/jsdom/issues/1937
+let emit;
+
+beforeAll(() => {
+    ({ emit } = window._virtualConsole);
+});
+
+beforeEach(() => {
+    window._virtualConsole.emit = jest.fn();
+});
+
+afterAll(() => {
+    window._virtualConsole.emit = emit;
+});
+
 describe("App", () => {
 
-    // https://github.com/jsdom/jsdom/issues/1937
-    let emit;
-
-    beforeAll(() => {
-        ({ emit } = window._virtualConsole);
-    });
-
-    beforeEach(() => {
-        window._virtualConsole.emit = jest.fn();
-    });
-
-    afterAll(() => {
-        window._virtualConsole.emit = emit;
-    });
 
     describe("Display", () => {
 
